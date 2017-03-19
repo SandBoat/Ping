@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PingPingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="ListID" />
+          </Key>
+          <Property Name="ListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartPoint" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EndPoint" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Departure" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sex" Type="tinyint" Nullable="false" />
+          <Property Name="Tel" Type="int" />
+          <Property Name="RegisterTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User-List">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ListID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ListID" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="Type" Type="tinyint" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_User-List_List">
+          <End Role="List" Type="Self.List" Multiplicity="1" />
+          <End Role="User-List" Type="Self.User-List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="List">
+              <PropertyRef Name="ListID" />
+            </Principal>
+            <Dependent Role="User-List">
+              <PropertyRef Name="ListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User-List_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User-List" Type="Self.User-List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="User-List">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PingPingModelStoreContainer">
+          <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User-List" EntityType="Self.User-List" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_User-List_List" Association="Self.FK_User-List_List">
+            <End Role="List" EntitySet="List" />
+            <End Role="User-List" EntitySet="User-List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User-List_User" Association="Self.FK_User-List_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User-List" EntitySet="User-List" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PingPingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="ListID" />
+          </Key>
+          <Property Name="ListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartPoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EndPoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Departure" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="User_List" Relationship="Self.FK_User_List_List" FromRole="List" ToRole="User_List" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sex" Type="Byte" Nullable="false" />
+          <Property Name="Tel" Type="Int32" />
+          <Property Name="RegisterTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="User_List" Relationship="Self.FK_User_List_User" FromRole="User" ToRole="User_List" />
+        </EntityType>
+        <EntityType Name="User_List">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ListID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ListID" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Type" Type="Byte" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="List" Relationship="Self.FK_User_List_List" FromRole="User_List" ToRole="List" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_List_User" FromRole="User_List" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_User_List_List">
+          <End Role="List" Type="Self.List" Multiplicity="1" />
+          <End Role="User_List" Type="Self.User_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="List">
+              <PropertyRef Name="ListID" />
+            </Principal>
+            <Dependent Role="User_List">
+              <PropertyRef Name="ListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_List_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User_List" Type="Self.User_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="User_List">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PingPingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="List" EntityType="Self.List" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="User_List" EntityType="Self.User_List" />
+          <AssociationSet Name="FK_User_List_List" Association="Self.FK_User_List_List">
+            <End Role="List" EntitySet="List" />
+            <End Role="User_List" EntitySet="User_List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_List_User" Association="Self.FK_User_List_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User_List" EntitySet="User_List" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PingPingModelStoreContainer" CdmEntityContainer="PingPingEntities">
+          <EntitySetMapping Name="List">
+            <EntityTypeMapping TypeName="PingPingModel.List">
+              <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="ListID" ColumnName="ListID" />
+                <ScalarProperty Name="StartPoint" ColumnName="StartPoint" />
+                <ScalarProperty Name="EndPoint" ColumnName="EndPoint" />
+                <ScalarProperty Name="Departure" ColumnName="Departure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="PingPingModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_List">
+            <EntityTypeMapping TypeName="PingPingModel.User_List">
+              <MappingFragment StoreEntitySet="User-List">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ListID" ColumnName="ListID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ping.Test", "Ping.Test\Ping
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{AF89E6F7-7BD9-49A5-8807-E798192A2E9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{BAEE9E26-F5EE-431C-B998-0B03E1DE5EDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{AF89E6F7-7BD9-49A5-8807-E798192A2E9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF89E6F7-7BD9-49A5-8807-E798192A2E9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF89E6F7-7BD9-49A5-8807-E798192A2E9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAEE9E26-F5EE-431C-B998-0B03E1DE5EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAEE9E26-F5EE-431C-B998-0B03E1DE5EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAEE9E26-F5EE-431C-B998-0B03E1DE5EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAEE9E26-F5EE-431C-B998-0B03E1DE5EDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

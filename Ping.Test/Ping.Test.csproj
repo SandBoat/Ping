@@ -64,6 +64,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{baee9e26-f5ee-431c-b998-0b03e1de5edd}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{af89e6f7-7bd9-49a5-8807-e798192a2e9e}</Project>
       <Name>DAL</Name>

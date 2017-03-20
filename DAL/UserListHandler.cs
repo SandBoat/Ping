@@ -7,54 +7,41 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    /// <summary>
-    /// 用户信息类数据处理层
-    /// </summary>
-    public class UserHandler
+    public class UserListHandler
     {
         #region 增
-        public bool Add(User user)
+        public bool Add(User_List ul)
         {
             using (var db = new PingPingEntities())
             {
-                user.RegisterTime = DateTime.Now;
-                user.Status = 1;
-                db.User.Add(user);
+                ul.Time = DateTime.Now;
+                ul.Status = 1;
+                db.User_List.Add(ul);
                 return db.SaveChanges() == 1 ? true : false;
             }
         }
         #endregion
 
         #region 查
-        public User GetUser(string userName,string password)
+        public User_List GetUserListById(int uid, int lid)
         {
             using (var db = new PingPingEntities())
             {
-                return db.User.Where(o => o.UserName == userName && o.Password == password && o.Status == 1).FirstOrDefault();
+                //return db.User_List.Find(uid, lid);
+                var ul = from o in db.User_List.Include("User").Include("List")
+                         where o.UserID == uid && o.ListID == lid
+                         select o;
+                return ul.Count() == 0 ? null : ul.First();
             }
         }
-        public User GetUserByUserName(string uname)
+        public List<User_List> GetUserListByUserId(int uid)
         {
             using (var db = new PingPingEntities())
             {
-                return db.User.Find(uname);
-            }
-        }
-        public User GetUserById(int uid)
-        {
-            using (var db = new PingPingEntities())
-            {
-                return db.User.Find(uid);
-            }
-        }
-        public List<User> GetUserAll()
-        {
-            using (var db = new PingPingEntities())
-            {
-                var userList = from o in db.User
-                               where o.Status == 1
-                               select o;
-                return userList.ToList();
+                var ul = from o in db.User_List
+                         where o.UserID == uid
+                         select o;
+                return ul.ToList();
             }
         }
         #endregion
@@ -86,5 +73,3 @@ namespace DAL
         #endregion
     }
 }
-
-

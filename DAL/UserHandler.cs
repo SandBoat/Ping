@@ -26,11 +26,15 @@ namespace DAL
         #endregion
 
         #region 查
-        public User GetUser(string userName,string password)
+        public User GetUser(string userName, string password)
         {
             using (var db = new PingPingEntities())
             {
-                return db.User.Where(o => o.UserName == userName && o.Password == password && o.Status == 1).FirstOrDefault();
+                var u = from o in db.User
+                        where o.UserName == userName && o.Password == password && o.Status == 1
+                        select o;
+                return u.Count() == 0 ? null : u.First();
+                //return db.User.Where(o => o.UserName == userName && o.Password == password && o.Status == 1).FirstOrDefault();
             }
         }
         public User GetUserByUserName(string uname)

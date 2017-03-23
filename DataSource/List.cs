@@ -21,8 +21,12 @@ namespace DataSource
         }
     
         public int ListID { get; set; }
-        public string StartPoint { get; set; }
-        public string EndPoint { get; set; }
+        public string StartAdress { get; set; }
+        public int StartPoint_x { get; set; }
+        public int StartPoint_y { get; set; }
+        public string EndAdress { get; set; }
+        public int EndPoint_x { get; set; }
+        public int EndPoint_y { get; set; }
         public System.DateTime Departure { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

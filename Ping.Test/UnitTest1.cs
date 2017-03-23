@@ -27,17 +27,21 @@ namespace Ping.Test
         [TestMethod]
         public void TestUserHandler()
         {
-            User u = new User();
-            u.Password = "123";
-            Assert.IsTrue(userHandler.Add(u));
+            //User u = new User();
+            //u.UserName = "1";
+            //u.Password = "123";
+            //Assert.IsTrue(userHandler.Add(u));
+
+            User u = userHandler.GetUser("1", "123");
+            Console.ReadLine();
         }
 
         [TestMethod]
         public void TestListHandler()
         {
             DataSource.List li = new List();
-            li.StartPoint = "test_sp2";
-            li.EndPoint = "test_ep2";
+            //li.StartPoint = "test_sp2";
+            //li.EndPoint = "test_ep2";
             li.Departure = DateTime.Now;
             Assert.IsTrue(listHandler.Add(li));
         }

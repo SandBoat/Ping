@@ -21,12 +21,12 @@ namespace DataSource
         }
     
         public int UserID { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
         public byte Sex { get; set; }
         public Nullable<int> Tel { get; set; }
         public System.DateTime RegisterTime { get; set; }
         public byte Status { get; set; }
-        public string UserName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User_List> User_List { get; set; }

@@ -46,8 +46,12 @@ namespace DAL
             using (var db = new PingPingEntities())
             {
                 var o = db.List.Find(list.ListID);
-                o.StartPoint = list.StartPoint;
-                o.EndPoint = list.EndPoint;
+                o.StartAdress = list.StartAdress;
+                o.StartPoint_x = list.StartPoint_x;
+                o.StartPoint_y = list.StartPoint_y;
+                o.EndAdress = list.EndAdress;
+                o.EndPoint_x = list.EndPoint_x;
+                o.EndPoint_y = list.EndPoint_y;
                 o.Departure = list.Departure;
                 return db.SaveChanges() == 1 ? true : false;
             }

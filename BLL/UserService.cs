@@ -73,7 +73,11 @@ namespace BLL
             {
                 return "error:用户名已存在";
             }
-            return "ok";
+            if (userHandler.Add(user))
+            {
+                return "ok";
+            }
+            return "error:";
         }
 
         /// <summary>

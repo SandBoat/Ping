@@ -10,8 +10,12 @@
             <PropertyRef Name="ListID" />
           </Key>
           <Property Name="ListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StartPoint" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EndPoint" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartAdress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartPoint_x" Type="int" Nullable="false" />
+          <Property Name="StartPoint_y" Type="int" Nullable="false" />
+          <Property Name="EndAdress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EndPoint_x" Type="int" Nullable="false" />
+          <Property Name="EndPoint_y" Type="int" Nullable="false" />
           <Property Name="Departure" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
@@ -83,23 +87,27 @@
             <PropertyRef Name="ListID" />
           </Key>
           <Property Name="ListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StartPoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EndPoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Departure" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="User_List" Relationship="Self.FK_User_List_List" FromRole="List" ToRole="User_List" />
+          <Property Name="StartAdress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartPoint_x" Type="Int32" Nullable="false" />
+          <Property Name="StartPoint_y" Type="Int32" Nullable="false" />
+          <Property Name="EndAdress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EndPoint_x" Type="Int32" Nullable="false" />
+          <Property Name="EndPoint_y" Type="Int32" Nullable="false" />
+          <Property Name="Departure" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Sex" Type="Byte" Nullable="false" />
           <Property Name="Tel" Type="Int32" />
           <Property Name="RegisterTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Status" Type="Byte" Nullable="false" />
           <NavigationProperty Name="User_List" Relationship="Self.FK_User_List_User" FromRole="User" ToRole="User_List" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User_List">
           <Key>
@@ -160,9 +168,13 @@
           <EntitySetMapping Name="List">
             <EntityTypeMapping TypeName="PingPingModel.List">
               <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="EndPoint_y" ColumnName="EndPoint_y" />
+                <ScalarProperty Name="EndPoint_x" ColumnName="EndPoint_x" />
+                <ScalarProperty Name="StartPoint_y" ColumnName="StartPoint_y" />
+                <ScalarProperty Name="StartPoint_x" ColumnName="StartPoint_x" />
+                <ScalarProperty Name="EndAdress" ColumnName="EndAdress" />
+                <ScalarProperty Name="StartAdress" ColumnName="StartAdress" />
                 <ScalarProperty Name="ListID" ColumnName="ListID" />
-                <ScalarProperty Name="StartPoint" ColumnName="StartPoint" />
-                <ScalarProperty Name="EndPoint" ColumnName="EndPoint" />
                 <ScalarProperty Name="Departure" ColumnName="Departure" />
               </MappingFragment>
             </EntityTypeMapping>

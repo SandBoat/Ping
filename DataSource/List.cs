@@ -11,7 +11,7 @@ namespace DataSource
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class List
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,12 +22,18 @@ namespace DataSource
     
         public int ListID { get; set; }
         public string StartAdress { get; set; }
-        public int StartPoint_x { get; set; }
-        public int StartPoint_y { get; set; }
+        public decimal StartPoint_x { get; set; }
+        public decimal StartPoint_y { get; set; }
         public string EndAdress { get; set; }
-        public int EndPoint_x { get; set; }
-        public int EndPoint_y { get; set; }
-        public System.DateTime Departure { get; set; }
+        public decimal EndPoint_x { get; set; }
+        public decimal EndPoint_y { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy年MM月dd日}")]
+        public System.DateTime Departure_Date { get; set; }
+        public System.TimeSpan Departure_Time { get; set; }
+        public byte Sex { get; set; }
+        public string Contacts { get; set; }
+        public string detail { get; set; }
+        public byte Statue { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User_List> User_List { get; set; }

@@ -27,13 +27,24 @@ namespace DAL
         {
             using (var db = new PingPingEntities())
             {
-                //return db.User_List.Find(uid, lid);
-                var ul = from o in db.User_List.Include("User").Include("List")
+                var ul = from o in db.User_List
                          where o.UserID == uid && o.ListID == lid
                          select o;
                 return ul.Count() == 0 ? null : ul.First();
             }
         }
+
+        public int GetUserIdByListId(int lid)
+        {
+            using (var db = new PingPingEntities())
+            {
+                var ul = from o in db.User_List
+                         where o.ListID == lid && o.Status == 1
+                         select o;
+                return ul.FirstOrDefault().UserID;
+            }
+        }
+
         public List<User_List> GetUserListByUserId(int uid)
         {
             using (var db = new PingPingEntities())
@@ -44,29 +55,50 @@ namespace DAL
                 return ul.ToList();
             }
         }
-        #endregion
-
-        #region 改
-        public bool Update(User user)
+        public List<User_List> GetUserListAndListByUserId(int uid)
         {
             using (var db = new PingPingEntities())
             {
-                var u = db.User.Find(user.UserID);
-                u.Password = user.Password;
-                u.Sex = user.Sex;
-                u.Tel = user.Tel;
+                var ul = from o in db.User_List.Include("List")
+                         where o.UserID == uid && o.Status == 1
+                         select o;
+                return ul.Count() == 0 ? null : ul.ToList();
+            }
+        }
+        public List<User_List> GetUserListAndListByUserId(int uid, int type)
+        {
+            using (var db = new PingPingEntities())
+            {
+                var ul = from o in db.User_List.Include("List")
+                         where o.UserID == uid && o.Type == type && o.Status == 1
+                         select o;
+                return ul.Count() == 0 ? null : ul.ToList();
+            }
+        }
+        #endregion
+
+        #region 改
+        public bool Update(User_List ul)
+        {
+            using (var db = new PingPingEntities())
+            {
+                var ulNew = db.User_List.Where(o => o.UserID == ul.UserID && o.ListID == ul.ListID).FirstOrDefault();
+                ulNew.Type = ul.Type;
                 return db.SaveChanges() == 1 ? true : false;
             }
         }
         #endregion
 
         #region 删
-        public bool Delete(int uid)
+        public bool Delete(int uid, int lid)
         {
             using (var db = new PingPingEntities())
             {
-                var u = db.User.Find(uid);
-                u.Status = 0;
+                var u = db.User_List.Where(o => o.UserID == uid && o.ListID == lid).FirstOrDefault();
+                if (u != null)
+                {
+                    u.Status = 0;
+                }
                 return db.SaveChanges() == 1 ? true : false;
             }
         }

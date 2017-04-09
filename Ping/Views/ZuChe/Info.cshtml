@@ -1,0 +1,90 @@
+﻿@model DataSource.List
+
+@{
+    ViewBag.Title = "Info";
+    ViewBag.Css = new string[]{
+        "~/Content/css/info-page.css"
+    };
+    ViewBag.Js = new string[]{
+        "~/Content/script/other-place.js"
+    };
+}
+
+<div class="nav">
+    <div class="nav-item"><a href="~/ZuChe/Search">搜索</a></div>
+    <div class="nav-item"><a href="~/ZuChe/Release">发布</a></div>
+    <div class="nav-item on-show"><a href="~/User/Info">我的</a></div>
+</div>
+<div class="info-block">
+    @foreach (var item in ViewData["mapLists"] as List<DataSource.List> ?? new List<DataSource.List>())
+    {
+        <a href="~/ZuChe/Detail/@item.ListID">
+            <div class="info-item">
+                <div class="info-box">
+                    <div class="single-info">
+                        <span>时间:</span>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Departure_Date)
+                            @Html.DisplayFor(modelItem => item.Departure_Time)
+                        </p>
+                    </div>
+                    <div class="single-info">
+                        <span>起点:</span>
+                        <p>@Html.DisplayFor(modelItem => item.StartAdress)</p>
+                    </div>
+                    <div class="single-info">
+                        <span>终点:</span>
+                        <p>@Html.DisplayFor(modelItem => item.EndAdress)</p>
+                    </div>
+                </div>
+                <div class="other-info">
+                    <div class="detail-info">
+                        <p>@Html.DisplayFor(modelItem => item.detail)</p>
+                    </div>
+                    <div class="user-info">
+                        @if (item.Sex == 2)
+                        {
+                            <div class="icon girl-icon">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="icon boy-icon">
+                            </div>
+                        }
+                        <p>ID @Html.DisplayFor(modelItem => item.ListID)</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+    <div class="info-hidden" id="start_x">@ViewData["start_x"]</div>
+    <div class="info-hidden" id="start_y">@ViewData["start_y"]</div>
+    <div class="info-hidden" id="end_x">@ViewData["end_x"]</div>
+    <div class="info-hidden" id="end_y">@ViewData["end_y"]</div>
+    <div class="info-hidden" id="date">@ViewData["date"]</div>
+</div>
+<div class="choose-holder">
+    <div class="choose-item" id="near-start">
+        <p>临近起点</p>
+        <div class="more-place" id="start_more">
+            <div class="distance-choose">
+                <div class="distance-item">1km内</div>
+                <div class="distance-item">再远一点</div>
+            </div>
+            <div id="start_more-all">
+            </div>
+        </div>
+    </div>
+    <div class="choose-item" id="near-end">
+        <p>临近终点</p>
+        <div class="more-place" id="end_more">
+            <div class="distance-choose">
+                <div class="distance-item">1km内</div>
+                <div class="distance-item">再远一点</div>
+            </div>
+            <div id="end_more-all">
+            </div>
+        </div>
+    </div>
+</div>

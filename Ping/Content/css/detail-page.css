@@ -1,0 +1,121 @@
+html{
+	width: 100%;
+	height: 100%;
+}
+body{
+	width: 100%;
+	height: 100%;
+	font-size: 20px;
+	background: url(http://ghy.swufe.edu.cn/hq/Ping/img/grass.jpg) 0 / cover fixed;
+}
+a{
+	text-decoration: none;
+	color:inherit;
+}
+/*--------------------------------------------------*/
+.nav{
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	top:0;
+	z-index: 1;
+	overflow:hidden;
+	color:#eeeeee;
+	padding-left:30px;
+	padding-right:30px;
+	box-sizing: border-box;
+	/*background: hsla(0,0%,100%,.3);*/
+}
+.nav-item{
+	width: 80px;
+	height: 100%;
+	float: left;
+	position: relative;
+	/*border: 0.5px solid rgba(0,0,0,0.4);*/
+	box-sizing: border-box;
+	font-size: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}	
+.on-show{
+	width: calc( 100% - 160px );
+	border-bottom: 2px solid #eeeeee;
+}
+/*------------------------------------------------*/
+.holder{
+	box-sizing: border-box;
+	width:100%;
+	height: calc(100% - 160px);
+	padding: 100px 92px;
+	top:80px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
+	position:relative;
+	overflow:hidden;
+	background: hsla(0,0%,100%,.3);
+}
+.holder::before {
+	content:'';
+	position:absolute;
+	top:0;bottom:0;right:0;left:0;
+	filter: blur(8px);
+	margin: -30px;
+	background: url(http://ghy.swufe.edu.cn/hq/Ping/img/grass.jpg) 0 / cover fixed;
+	/*background: red;*/
+	z-index:-1;
+}
+.grid-cell{
+	flex:1;
+	box-sizing: border-box;
+	font-size: 24px;
+	display: flex;
+	/*align-items: baseline;*/
+	flex-wrap: wrap;
+}
+.line-box{
+	width: 100%;
+	height: auto;
+}
+.u-30{
+	flex:0 0 30%;
+}
+.u-70{
+	flex:0 0 70%;
+}
+.u-100{
+	flex:0 0 100%;
+}
+.icon{
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+}
+.girl-icon{
+	background: url(http://ghy.swufe.edu.cn/hq/Ping/img/girl-min.png); 
+}
+.boy-icon{
+	background: url(http://ghy.swufe.edu.cn/hq/Ping/img/boy-min.png); 
+}
+.id-box{
+	height: 50px;
+	padding: 12px 25px 5px 5px;
+	line-height: 24px;
+	font-size: 24px;
+}
+button {
+    width: 100px;
+    height: 60px;
+    background: linear-gradient(45deg, hsla(94, 52%, 41%, 0.8), hsla(95, 76%, 13%, 0.8));
+    border: 1px solid hsla(94, 52%, 41%, 0.4);
+    /*box-shadow: 1px 1px 1px hsla(95,76%,13%,1);*/
+    font-size: 20px;
+    border-radius: 4px;
+    color: #eeeeee;
+}
+
+.button-click {
+    border: 3px solid #eeeeee;
+}

@@ -23,7 +23,7 @@ namespace DataSource
         public int UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public byte Sex { get; set; }
+        public Nullable<byte> Sex { get; set; }
         public Nullable<int> Tel { get; set; }
         public System.DateTime RegisterTime { get; set; }
         public byte Status { get; set; }

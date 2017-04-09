@@ -1,0 +1,61 @@
+﻿@model DataSource.List
+
+@{
+    ViewBag.Title = "Detail";
+    ViewBag.Css = new string[]{
+        "~/Content/css/detail-page.css"
+    };
+    ViewBag.Js = new string[]{
+        "~/Content/script/guanzhu.js"
+    };
+}
+
+<div class="nav">
+    <div class="nav-item on-show"><a href="~/ZuChe/Search">搜索</a></div>
+    <div class="nav-item"><a href="~/ZuChe/Release">发布</a></div>
+    <div class="nav-item"><a href="~/User/Info">我的</a></div>
+</div>
+<div class="holder">
+    <div class="grid-cell u-30"><p>起点</p></div>
+    <div class="grid-cell u-70"><p>@Html.DisplayFor(model => model.StartAdress)</p></div>
+    <div class="grid-cell u-30"><p>终点</p></div>
+    <div class="grid-cell u-70"><p>@Html.DisplayFor(model => model.EndAdress)</p></div>
+    <div class="grid-cell u-30"><p>时间</p></div>
+    <div class="grid-cell u-70"><p>@Html.DisplayFor(model => model.Departure_Date.Date) @Html.DisplayFor(model => model.Departure_Time)</p></div>
+    <div class="grid-cell u-30"><p>要求</p></div>
+    <div class="grid-cell u-70">
+        <p>@Html.DisplayFor(model => model.detail)</p>
+    </div>
+    <div class="grid-cell u-100">
+        @if (Model.Sex == 2)
+        {
+            <div class="icon girl-icon">
+            </div>
+        }
+        else
+        {
+            <div class="icon boy-icon">
+            </div>
+        }
+        <p>ID:@ViewData["RelesseUserID"]</p>
+    </div>
+    <div class="grid-cell u-30"><p>联系方式</p></div>
+    <div class="grid-cell u-70">
+        @foreach (var i in Model.Contacts.Split('|'))
+        {
+            <div class="line-box">
+                <p>
+                    @i
+                </p>
+            </div>
+        }
+    </div>
+    @if ((bool)ViewData["hasFollow"])
+    {
+        <button class="button-click" id="guanzhu" data-listId="@Model.ListID">已关注</button>
+    }
+    else
+    {
+        <button id="guanzhu" data-listId="@Model.ListID">关注</button>
+    }
+</div>

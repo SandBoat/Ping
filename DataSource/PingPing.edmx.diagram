@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4f50477a5204406ca01a6e15145c5cc1" Name="Diagram1">
-        <EntityTypeShape EntityType="PingPingModel.List" Width="1.5" PointX="0.625" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PingPingModel.User" Width="1.5" PointX="5.375" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PingPingModel.User_List" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="PingPingModel.FK_User_List_List" ManuallyRouted="false" />
-        <AssociationConnector Association="PingPingModel.FK_User_List_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PingPingModel.List" Width="1.5" PointX="5.375" PointY="1.375" />
+        <EntityTypeShape EntityType="PingPingModel.User" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="PingPingModel.User_List" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="PingPingModel.FK_User_List_List" />
+        <AssociationConnector Association="PingPingModel.FK_User_List_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

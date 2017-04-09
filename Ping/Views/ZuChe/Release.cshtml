@@ -1,0 +1,74 @@
+﻿@model Ping.Models.ReleaseModels
+
+@{
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+    ViewBag.Title = "Release";
+    //ViewBag.Css = new string[]{
+    //    "~/Content/css/release-page.css"
+    //};
+}
+
+@using (Html.BeginForm("Release", "ZuChe", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="nav">
+        <div class="nav-item"><a href="~/ZuChe/Search">搜索</a></div>
+        <div class="nav-item on-show"><a href="~/ZuChe/Release">发布</a></div>
+        <div class="nav-item"><a href="~/User/Info">我的</a></div>
+    </div>
+    <div class="holder">
+        <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+        @* hidden *@
+        <input name="Start_x" type="hidden" value="103.827675" class="grid-cell u-70">
+        <input name="Start_y" type="hidden" value="30.687832" class="grid-cell u-70">
+        <input name="End_x" type="hidden" value="104.020548" class="grid-cell u-70">
+        <input name="End_y" type="hidden" value="30.674066" class="grid-cell u-70">
+        @* 起点 *@
+        <div class="grid-cell u-30"><p>起点</p></div>
+        <input name="StartAdress" type="text" class="grid-cell u-70" id="suggestId1">
+        @* 终点 *@
+        <div class="grid-cell u-30"><p>终点</p></div>
+        <input name="EndAdress" type="text" class="grid-cell u-70" id="suggestId2">
+        @* 出发时间 *@
+        <div class="grid-cell u-30"><p>日期</p></div>
+        <div class="grid-cell u-70 input-group date form_datetime">
+            <input name="Departure" class="form-control" size="20" type="text" value="" readonly id="date">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+        </div>
+        @* 性别 *@
+        <div class="grid-cell u-100">
+            <p style="color:#eeeeee;">性别</p>
+            <label><input type="radio" name="Sex" value="男">男</label>
+            <label><input type="radio" name="Sex" value="女">女</label>
+        </div>
+        @* 联系方式 *@
+        <div class="grid-cell u-30"><p>联系方式</p></div>
+        <div class="grid-cell u-70 contact-box">
+            <div class="contact-item">
+                <div class="btn-o"><p>电话</p></div>
+                <input type="text" id="phone">
+            </div>
+            <div class="contact-item">
+                <div class="btn-o"><p>QQ</p></div>
+                <input type="text" id="qq">
+            </div>
+            <div class="contact-item">
+                <div class="btn-o"><p>微信</p></div>
+                <input type="text" id="wechat">
+            </div>
+            <div class="contact-item">
+                <div class="btn-o"><p>邮箱</p></div>
+                <input type="text" id="email">
+            </div>
+            <p class="notion-word">*至少选填一项</p>
+            <input type="hidden" name="Contacts" class="info-hidden" id="all-info">
+        </div>
+        <div class="grid-cell u-30"><p>要求</p></div>
+        <div class="grid-cell u-70 demand-holder">
+            <input type="text">
+        </div>
+        <button class="grid-cell btn-re" id="release">发布</button>
+        <div class="map-holder" id="l-map"></div>
+    </div>
+}

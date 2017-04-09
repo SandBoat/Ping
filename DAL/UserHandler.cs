@@ -41,7 +41,7 @@ namespace DAL
         {
             using (var db = new PingPingEntities())
             {
-                return db.User.Find(uname);
+                return db.User.Where(o => o.UserName.Equals(uname)).FirstOrDefault();
             }
         }
         public User GetUserById(int uid)

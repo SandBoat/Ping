@@ -1,0 +1,95 @@
+﻿@model DataSource.List
+
+@{
+    ViewBag.Title = "User-Info";
+    ViewBag.Css = new string[]{
+        "~/Content/css/user-info.css"
+    };
+}
+
+<div class="nav">
+    <div class="nav-item"><a href="~/ZuChe/Search">搜索</a></div>
+    <div class="nav-item"><a href="~/ZuChe/Release">发布</a></div>
+    <div class="nav-item on-show"><a href="~/User/Info">我的</a></div>
+</div>
+<div class="icon-holder">
+    <div class="icon-box">
+        <div class="icon"></div>
+        <div class="name-holder">ID @ViewData["userId"]</div>
+    </div>
+</div>
+<div class="show-board">
+    <div class="title-holder"><p>我发布的信息</p></div>
+    <div class="content-holder">
+        @if (ViewData["myRelease"] != null)
+            {
+
+                foreach (var item in ViewData["myRelease"] as List<DataSource.User_List>)
+                {
+                <div class="info-item">
+                    <div class="info-box">
+                        <div class="single-info">
+                            <span>时间:</span>
+                            @*<p>@Html.DisplayFor(modelItem => item.List.Departure_Date) @Html.DisplayFor(modelItem => item.List.Departure_Time)</p>*@
+                            @Html.DisplayFor(modelItem => item.List.Departure_Date)
+                            @Html.DisplayFor(modelItem => item.List.Departure_Time)
+                        </div>
+                        <div class="single-info">
+                            <span>起点:</span>
+                            <p>@Html.DisplayFor(modelItem => item.List.StartAdress)</p>
+                        </div>
+                        <div class="single-info">
+                            <span>终点:</span>
+                            <p>@Html.DisplayFor(modelItem => item.List.EndAdress)</p>
+                        </div>
+                    </div>
+                    <div class="other-info">
+                        <div class="detail-info">
+                            <p>@Html.DisplayFor(modelItem => item.List.detail)</p>
+                        </div>
+                        @*<div class="user-info">
+                                <div class="icon"></div>
+                                <p>ID @Html.DisplayFor(modelItem => item.ListID)</p>
+                            </div>*@
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<div class="show-board">
+    <div class="title-holder"><p>我关注的信息</p></div>
+    <div class="content-holder">
+        @if (ViewData["myFollow"] != null)
+            {
+                foreach (var item in ViewData["myFollow"] as List<DataSource.User_List>)
+                {
+                <div class="info-item">
+                    <div class="info-box">
+                        <div class="single-info">
+                            <span>时间:</span>
+                            <p>@Html.DisplayFor(modelItem => item.List.Departure_Date.Date) @Html.DisplayFor(modelItem => item.List.Departure_Time)</p>
+                        </div>
+                        <div class="single-info">
+                            <span>起点:</span>
+                            <p>@Html.DisplayFor(modelItem => item.List.StartAdress)</p>
+                        </div>
+                        <div class="single-info">
+                            <span>终点:</span>
+                            <p>@Html.DisplayFor(modelItem => item.List.EndAdress)</p>
+                        </div>
+                    </div>
+                    <div class="other-info">
+                        <div class="detail-info">
+                            <p>@Html.DisplayFor(modelItem => item.List.detail)</p>
+                        </div>
+                        @*<div class="user-info">
+                                <div class="icon"></div>
+                                <p>ID @Html.DisplayFor(modelItem => item.ListID)</p>
+                            </div>*@
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

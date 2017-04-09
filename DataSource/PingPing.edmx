@@ -11,12 +11,17 @@
           </Key>
           <Property Name="ListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StartAdress" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="StartPoint_x" Type="int" Nullable="false" />
-          <Property Name="StartPoint_y" Type="int" Nullable="false" />
+          <Property Name="StartPoint_x" Type="decimal" Precision="10" Scale="6" Nullable="false" />
+          <Property Name="StartPoint_y" Type="decimal" Precision="10" Scale="6" Nullable="false" />
           <Property Name="EndAdress" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EndPoint_x" Type="int" Nullable="false" />
-          <Property Name="EndPoint_y" Type="int" Nullable="false" />
-          <Property Name="Departure" Type="smalldatetime" Nullable="false" />
+          <Property Name="EndPoint_x" Type="decimal" Precision="10" Scale="6" Nullable="false" />
+          <Property Name="EndPoint_y" Type="decimal" Precision="10" Scale="6" Nullable="false" />
+          <Property Name="Departure_Date" Type="date" Nullable="false" />
+          <Property Name="Departure_Time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="Sex" Type="tinyint" Nullable="false" />
+          <Property Name="Contacts" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="detail" Type="nvarchar" MaxLength="500" />
+          <Property Name="Statue" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -25,7 +30,7 @@
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Sex" Type="tinyint" Nullable="false" />
+          <Property Name="Sex" Type="tinyint" />
           <Property Name="Tel" Type="int" />
           <Property Name="RegisterTime" Type="datetime" Nullable="false" />
           <Property Name="Status" Type="tinyint" Nullable="false" />
@@ -82,19 +87,37 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PingPingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PingPingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="List" EntityType="PingPingModel.List" />
+          <EntitySet Name="User" EntityType="PingPingModel.User" />
+          <EntitySet Name="User_List" EntityType="PingPingModel.User_List" />
+          <AssociationSet Name="FK_User_List_List" Association="PingPingModel.FK_User_List_List">
+            <End Role="List" EntitySet="List" />
+            <End Role="User_List" EntitySet="User_List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_List_User" Association="PingPingModel.FK_User_List_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User_List" EntitySet="User_List" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="List">
           <Key>
             <PropertyRef Name="ListID" />
           </Key>
           <Property Name="ListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="User_List" Relationship="Self.FK_User_List_List" FromRole="List" ToRole="User_List" />
           <Property Name="StartAdress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StartPoint_x" Type="Int32" Nullable="false" />
-          <Property Name="StartPoint_y" Type="Int32" Nullable="false" />
+          <Property Name="StartPoint_x" Type="Decimal" Nullable="false" Precision="10" Scale="6" />
+          <Property Name="StartPoint_y" Type="Decimal" Nullable="false" Precision="10" Scale="6" />
           <Property Name="EndAdress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EndPoint_x" Type="Int32" Nullable="false" />
-          <Property Name="EndPoint_y" Type="Int32" Nullable="false" />
-          <Property Name="Departure" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndPoint_x" Type="Decimal" Nullable="false" Precision="10" Scale="6" />
+          <Property Name="EndPoint_y" Type="Decimal" Nullable="false" Precision="10" Scale="6" />
+          <Property Name="Departure_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Departure_Time" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="Sex" Type="Byte" Nullable="false" />
+          <Property Name="Contacts" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="detail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Statue" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="User_List" Relationship="PingPingModel.FK_User_List_List" FromRole="List" ToRole="User_List" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -102,12 +125,12 @@
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Sex" Type="Byte" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="Byte" />
           <Property Name="Tel" Type="Int32" />
           <Property Name="RegisterTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Status" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="User_List" Relationship="Self.FK_User_List_User" FromRole="User" ToRole="User_List" />
+          <NavigationProperty Name="User_List" Relationship="PingPingModel.FK_User_List_User" FromRole="User" ToRole="User_List" />
         </EntityType>
         <EntityType Name="User_List">
           <Key>
@@ -119,12 +142,12 @@
           <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Type" Type="Byte" Nullable="false" />
           <Property Name="Status" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="List" Relationship="Self.FK_User_List_List" FromRole="User_List" ToRole="List" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_List_User" FromRole="User_List" ToRole="User" />
+          <NavigationProperty Name="List" Relationship="PingPingModel.FK_User_List_List" FromRole="User_List" ToRole="List" />
+          <NavigationProperty Name="User" Relationship="PingPingModel.FK_User_List_User" FromRole="User_List" ToRole="User" />
         </EntityType>
         <Association Name="FK_User_List_List">
-          <End Role="List" Type="Self.List" Multiplicity="1" />
-          <End Role="User_List" Type="Self.User_List" Multiplicity="*" />
+          <End Type="PingPingModel.List" Role="List" Multiplicity="1" />
+          <End Type="PingPingModel.User_List" Role="User_List" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="List">
               <PropertyRef Name="ListID" />
@@ -135,8 +158,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_List_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="User_List" Type="Self.User_List" Multiplicity="*" />
+          <End Type="PingPingModel.User" Role="User" Multiplicity="1" />
+          <End Type="PingPingModel.User_List" Role="User_List" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserID" />
@@ -146,19 +169,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PingPingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="List" EntityType="Self.List" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <EntitySet Name="User_List" EntityType="Self.User_List" />
-          <AssociationSet Name="FK_User_List_List" Association="Self.FK_User_List_List">
-            <End Role="List" EntitySet="List" />
-            <End Role="User_List" EntitySet="User_List" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_List_User" Association="Self.FK_User_List_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="User_List" EntitySet="User_List" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -168,38 +178,43 @@
           <EntitySetMapping Name="List">
             <EntityTypeMapping TypeName="PingPingModel.List">
               <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="Statue" ColumnName="Statue" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="Contacts" ColumnName="Contacts" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Departure_Time" ColumnName="Departure_Time" />
+                <ScalarProperty Name="Departure_Date" ColumnName="Departure_Date" />
                 <ScalarProperty Name="EndPoint_y" ColumnName="EndPoint_y" />
                 <ScalarProperty Name="EndPoint_x" ColumnName="EndPoint_x" />
+                <ScalarProperty Name="EndAdress" ColumnName="EndAdress" />
                 <ScalarProperty Name="StartPoint_y" ColumnName="StartPoint_y" />
                 <ScalarProperty Name="StartPoint_x" ColumnName="StartPoint_x" />
-                <ScalarProperty Name="EndAdress" ColumnName="EndAdress" />
                 <ScalarProperty Name="StartAdress" ColumnName="StartAdress" />
                 <ScalarProperty Name="ListID" ColumnName="ListID" />
-                <ScalarProperty Name="Departure" ColumnName="Departure" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="PingPingModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="Tel" ColumnName="Tel" />
-                <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User_List">
             <EntityTypeMapping TypeName="PingPingModel.User_List">
               <MappingFragment StoreEntitySet="User-List">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ListID" ColumnName="ListID" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="ListID" ColumnName="ListID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,0 +1,215 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background: url(http://ghy.swufe.edu.cn/hq/Ping/img/grass.jpg) 0 / cover fixed;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+/*---------------------------------------------*/
+.nav {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    overflow: hidden;
+    color: #eeeeee;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-sizing: border-box;
+    /*background: hsla(0,0%,100%,.3);*/
+}
+
+.nav-item {
+    width: 80px;
+    height: 100%;
+    float: left;
+    position: relative;
+    /*border: 0.5px solid rgba(0,0,0,0.4);*/
+    box-sizing: border-box;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.on-show {
+    width: calc( 100% - 160px );
+    border-bottom: 2px solid #eeeeee;
+}
+/*--------------------------------------------------*/
+.holder {
+    box-sizing: border-box;
+    width: 100%;
+    height: calc( 100% - 160px );
+    padding: 20px 50px;
+    top: 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: hsla(0,0%,100%,.3);
+}
+
+    .holder::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        filter: blur(8px);
+        margin: -30px;
+        background: url(http://ghy.swufe.edu.cn/hq/Ping/img/grass.jpg) 0 / cover fixed;
+        /*background: red;*/
+        z-index: -1;
+    }
+
+.grid-cell {
+    flex: 1;
+    box-sizing: border-box;
+    font-size: 30px;
+    line-height: 30px;
+    height: 38px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.u-30 {
+    flex: 0 0 30%;
+    color: #eeeeee;
+}
+
+.u-70 {
+    flex: 0 0 70%;
+}
+
+.u-100 {
+    flex: 0 0 100%;
+}
+
+.holder > input {
+    width: 100%;
+    line-height: 20px;
+    border-radius: 4px;
+    border: 1px solid #c1e1cc;
+    box-shadow: 1px 1px 1px #97d0c1;
+    background: #eeeeee;
+}
+
+label {
+    color: #eeeeee;
+}
+
+    label input {
+        width: 20px;
+        height: 20px;
+        color: #eeeeee;
+    }
+
+input:focus {
+    border-color: #66afe9;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: 0;
+}
+
+button {
+    background: linear-gradient(45deg,hsla(94,52%,41%,0.8),hsla(95,76%,13%,0.8));
+    border: 1px solid hsla(94,52%,41%,0.4);
+    font-size: 20px;
+    border-radius: 4px;
+    color: #eeeeee;
+}
+/*---------------------------------------------------*/
+.contact-box {
+    height: 220px;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.add-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.6);
+}
+
+.contact-item {
+    width: 100%;
+    margin: 2px 0 2px 0;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    line-height: 20px;
+    background: #eeeeee;
+    border-radius: 4px;
+    border: 1px solid #c1e1cc;
+}
+
+    .contact-item > input {
+        height: 40px;
+        width: 77%;
+        box-sizing: border-box;
+        font-size: 20px;
+        line-height: 20px;
+        background: #eeeeee;
+        border-radius: 4px;
+        border: 0px solid #c1e1cc;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+
+.btn-o {
+    width: 23%;
+    height: 40px;
+    font-size: 24px;
+    line-height: 40px;
+    background: #eeeeee;
+    border: 0px solid transparent;
+    border-radius: 4px;
+    color: black;
+    padding: 0 10px 0 10px;
+}
+
+.btn-re {
+    display: block;
+    text-align: center;
+}
+/*-----------------------------*/
+.demand-holder {
+    height: 200px;
+    border-radius: 4px;
+}
+/*-----------------------------*/
+.map-holder {
+    position: absolute;
+    bottom: 30px;
+    margin: auto;
+    z-index: 2;
+    border: 1px solid #eeeeee;
+    width: 600px;
+    left: calc( 50% - 300px );
+    height: 300px;
+    display: none;
+}
+/*------------------------------*/
+.notion-word {
+    font-size: 12px;
+    color: #eeeeee;
+}
+/*------------------------------*/
+form {
+    height: 100%;
+}

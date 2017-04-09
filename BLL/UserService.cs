@@ -14,6 +14,7 @@ namespace BLL
     public class UserService
     {
         private UserHandler userHandler = new UserHandler();
+        private UserListHandler userListHandler = new UserListHandler();
 
         /// <summary>
         /// 登录验证
@@ -91,6 +92,24 @@ namespace BLL
         public bool DeleteUser(int uid)
         {
             return userHandler.Delete(uid);
+        }
+
+        public List<User_List> getUserList(int userId)
+        {
+            return userListHandler.GetUserListAndListByUserId(userId);
+        }
+        public List<User_List> getUserRelease(int userId)
+        {
+            return userListHandler.GetUserListAndListByUserId(userId, 1);
+        }
+        public List<User_List> getUserFollow(int userId)
+        {
+            return userListHandler.GetUserListAndListByUserId(userId, 2);
+        }
+
+        public User getUserById(int userId)
+        {
+            return userHandler.GetUserById(userId);
         }
     }
 }

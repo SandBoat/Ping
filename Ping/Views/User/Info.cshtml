@@ -21,16 +21,14 @@
 <div class="show-board">
     <div class="title-holder"><p>我发布的信息</p></div>
     <div class="content-holder">
-        @if (ViewData["myRelease"] != null)
-            {
 
-                foreach (var item in ViewData["myRelease"] as List<DataSource.User_List>)
-                {
+        @foreach (var item in ViewData["myRelease"] as List<DataSource.User_List> ?? new List<DataSource.User_List>())
+        {
+            <a href="~/ZuChe/Detail/@item.ListID">
                 <div class="info-item">
                     <div class="info-box">
                         <div class="single-info">
                             <span>时间:</span>
-                            @*<p>@Html.DisplayFor(modelItem => item.List.Departure_Date) @Html.DisplayFor(modelItem => item.List.Departure_Time)</p>*@
                             @Html.DisplayFor(modelItem => item.List.Departure_Date)
                             @Html.DisplayFor(modelItem => item.List.Departure_Time)
                         </div>
@@ -43,32 +41,30 @@
                             <p>@Html.DisplayFor(modelItem => item.List.EndAdress)</p>
                         </div>
                     </div>
-                    <div class="other-info">
+                    @*<div class="other-info">
                         <div class="detail-info">
                             <p>@Html.DisplayFor(modelItem => item.List.detail)</p>
                         </div>
-                        @*<div class="user-info">
-                                <div class="icon"></div>
-                                <p>ID @Html.DisplayFor(modelItem => item.ListID)</p>
-                            </div>*@
-                    </div>
+                    </div>*@
                 </div>
-            }
+            </a>
         }
     </div>
 </div>
 <div class="show-board">
     <div class="title-holder"><p>我关注的信息</p></div>
     <div class="content-holder">
-        @if (ViewData["myFollow"] != null)
-            {
-                foreach (var item in ViewData["myFollow"] as List<DataSource.User_List>)
-                {
+        @foreach (var item in ViewData["myFollow"] as List<DataSource.User_List> ?? new List<DataSource.User_List>())
+        {
+            <a href="~/ZuChe/Detail/@item.ListID">
                 <div class="info-item">
                     <div class="info-box">
                         <div class="single-info">
                             <span>时间:</span>
-                            <p>@Html.DisplayFor(modelItem => item.List.Departure_Date.Date) @Html.DisplayFor(modelItem => item.List.Departure_Time)</p>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.List.Departure_Date)
+                                @Html.DisplayFor(modelItem => item.List.Departure_Time)
+                            </p>
                         </div>
                         <div class="single-info">
                             <span>起点:</span>
@@ -79,17 +75,13 @@
                             <p>@Html.DisplayFor(modelItem => item.List.EndAdress)</p>
                         </div>
                     </div>
-                    <div class="other-info">
+                    @*<div class="other-info">
                         <div class="detail-info">
                             <p>@Html.DisplayFor(modelItem => item.List.detail)</p>
                         </div>
-                        @*<div class="user-info">
-                                <div class="icon"></div>
-                                <p>ID @Html.DisplayFor(modelItem => item.ListID)</p>
-                            </div>*@
-                    </div>
+                    </div>*@
                 </div>
-            }
+            </a>
         }
     </div>
 </div>

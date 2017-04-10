@@ -70,29 +70,35 @@ function setPlace() {
 }
 
 var releaseBtn = document.getElementById("release");
+var releaseFomr = document.getElementById("releaseForm");
+var getPoint_count = 0;
 phone = document.getElementById("phone");
 qq = document.getElementById("qq");
 wechat = document.getElementById("wechat");
 email = document.getElementById("email");
 allInfo = document.getElementById("all-info");
 
-function findPos(posName, posx, posy) {
+function findPos(posName, posxStr, posyStr) {
     var myGeo = new BMap.Geocoder();
-    var posx = document.getElementById(posx);
-    var posy = document.getElementById(posy);
+    var posx = document.getElementById(posxStr);
+    var posy = document.getElementById(posyStr);
 
     myGeo.getPoint(posName, function (point) {
         if (point) {
             posx.value = point.lng;
             posy.value = point.lat;
-            console.log(posx.value);
-            console.log(posy.value);
+
+            getPoint_count--;
+            if (getPoint_count == 0) {
+                releaseFomr.submit();
+            }
         }
     }, cityname);
 
 }
 
 releaseBtn.onclick = function () {
+    getPoint_count = 2;
     findPos(suggestId1.value, "start_x", "start_y");
     findPos(suggestId2.value, "end_x", "end_y");
     allInfo.value = "phone:" + phone.value + "|" + "qq:" + qq.value + "|" + "wechat:" + wechat.value + "|" + "email:" + email.value;

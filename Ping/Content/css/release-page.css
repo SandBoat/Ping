@@ -76,6 +76,7 @@ a {
     }
 
 .grid-cell {
+    -webkit-box-flex: 1;
     flex: 1;
     box-sizing: border-box;
     font-size: 30px;

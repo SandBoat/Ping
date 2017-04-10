@@ -10,7 +10,7 @@
     //    "~/bundles/search_js"
     //};
 }
-@using (Html.BeginForm("Info", "ZuChe", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+@using (Html.BeginForm("Info", "ZuChe", FormMethod.Post, new { @class = "form-horizontal", id = "searchForm", @role = "form" }))
 {
     @Html.AntiForgeryToken()
 
@@ -20,28 +20,25 @@
         <div class="nav-item"><a href="~/User/Info">我的</a></div>
     </div>
     <div class="holder">
+        @* 隐藏信息 *@
+        <input name="Start_x" type="hidden" value="" class="grid-cell u-70" id="start_x">
+        <input name="Start_y" type="hidden" value="" class="grid-cell u-70" id="start_y">
+        <input name="End_x" type="hidden" value="" class="grid-cell u-70" id="end_x">
+        <input name="End_y" type="hidden" value="" class="grid-cell u-70" id="end_y">
         @* 起点 *@
         <div class="grid-cell u-30"><p>起点</p></div>
         <input name="StartAdress" type="text" class="grid-cell u-70" id="suggestId1">
-        @*<input name="Start_x" type="hidden" class="grid-cell u-70" id="start_x">
-            <input name="Start_y" type="hidden" class="grid-cell u-70" id="start_y">*@
-        <input name="Start_x" type="hidden" value="103.827675" class="grid-cell u-70">
-        <input name="Start_y" type="hidden" value="30.687832" class="grid-cell u-70">
         @*终点*@
         <div class="grid-cell u-30"><p>终点</p></div>
         <input name="EndAdress" type="text" class="grid-cell u-70" id="suggestId2">
-        @*<input name="End_x" type="hidden" class="grid-cell u-70" id="end_x">
-            <input name="End_y" type="hidden" class="grid-cell u-70" id="end_y">*@
-        <input name="End_x" type="hidden" value="104.020548" class="grid-cell u-70">
-        <input name="End_y" type="hidden" value="30.674066" class="grid-cell u-70">
+
         @* 出发日期 *@
         <div class="grid-cell u-30"><p>日期</p></div>
         <div class="grid-cell u-70 input-group date form_datetime">
-            <input name="Departure" class="form-control" size="20" type="text" value="2017-5-5 14:19:23" readonly>
-            @*<input name="Departure" class="form-control" size="20" type="text" value="" readonly>*@
+            <input name="Departure" class="form-control" size="20" type="text" value="" readonly>
             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
         </div>
-        <button type="submit" class="grid-cell for-button" id="search"><p>搜索</p></button>
+        <button type="button" class="grid-cell for-button" id="search">搜索</button>
         <div class="map-holder" id="l-map"></div>
         <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
     </div>

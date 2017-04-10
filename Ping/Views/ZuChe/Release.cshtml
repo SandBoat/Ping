@@ -8,7 +8,7 @@
     //};
 }
 
-@using (Html.BeginForm("Release", "ZuChe", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+@using (Html.BeginForm("Release", "ZuChe", FormMethod.Post, new { @class = "form-horizontal", id = "releaseForm", @role = "form" }))
 {
     @Html.AntiForgeryToken()
 
@@ -20,10 +20,10 @@
     <div class="holder">
         <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
         @* hidden *@
-        <input name="Start_x" type="hidden" value="103.827675" class="grid-cell u-70">
-        <input name="Start_y" type="hidden" value="30.687832" class="grid-cell u-70">
-        <input name="End_x" type="hidden" value="104.020548" class="grid-cell u-70">
-        <input name="End_y" type="hidden" value="30.674066" class="grid-cell u-70">
+        <input name="Start_x" type="hidden" value="" class="grid-cell u-70" id="start_x">
+        <input name="Start_y" type="hidden" value="" class="grid-cell u-70" id="start_y">
+        <input name="End_x" type="hidden" value="" class="grid-cell u-70" id="end_x">
+        <input name="End_y" type="hidden" value="" class="grid-cell u-70" id="end_y">
         @* 起点 *@
         <div class="grid-cell u-30"><p>起点</p></div>
         <input name="StartAdress" type="text" class="grid-cell u-70" id="suggestId1">
@@ -66,9 +66,9 @@
         </div>
         <div class="grid-cell u-30"><p>要求</p></div>
         <div class="grid-cell u-70 demand-holder">
-            <input type="text">
+            <input name="Detail" type="text">
         </div>
-        <button class="grid-cell btn-re" id="release">发布</button>
+        <button type="button" class="grid-cell btn-re" id="release">发布</button>
         <div class="map-holder" id="l-map"></div>
     </div>
 }

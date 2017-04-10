@@ -14,12 +14,6 @@ namespace Ping.Controllers
     {
         UserService userService = new UserService();
 
-        // GET: User
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         #region 登录
         // Get:Login
         [HttpGet]
@@ -86,7 +80,7 @@ namespace Ping.Controllers
             int userId = int.Parse(Session["userId"].ToString());
 
             User user = userService.getUserById(userId);
-            List<User_List> userRelease = userService.getUserList(userId);
+            List<User_List> userRelease = userService.getUserRelease(userId);
             List<User_List> userFollow = userService.getUserFollow(userId);
             ViewData["myRelease"] = userRelease;
             ViewData["myFollow"] = userFollow;

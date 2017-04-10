@@ -160,6 +160,7 @@
     <Content Include="Content\css\search-page.css" />
     <Content Include="Content\css\sign-in.css" />
     <Content Include="Content\css\user-info.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\script\get-position.js" />
     <Content Include="Content\script\guanzhu.js" />
     <Content Include="Content\script\map-show-up.js" />
@@ -221,6 +222,9 @@
     <Content Include="Views\ZuChe\Info.cshtml" />
     <Content Include="Views\ZuChe\Detail.cshtml" />
     <Content Include="Views\User\Info.cshtml" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Properties\PublishProfiles\Ping.pubxml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Shared\_Layout3.cshtml" />

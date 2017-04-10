@@ -57,6 +57,7 @@ function handleStateChange() {
         if (xmlHttp.responseText === "ok") {
             changeBtn();
         } else if (xmlHttp.responseText === "login") {
+            alert("请先登录");
             window.location.href = "http://ghy.swufe.edu.cn/hq/Ping/User/Login";
         }
     }

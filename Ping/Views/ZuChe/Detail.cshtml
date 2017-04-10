@@ -8,6 +8,7 @@
     ViewBag.Js = new string[]{
         "~/Content/script/guanzhu.js"
     };
+    int type = (int)ViewData["userListType"];
 }
 
 <div class="nav">
@@ -21,7 +22,7 @@
     <div class="grid-cell u-30"><p>终点</p></div>
     <div class="grid-cell u-70"><p>@Html.DisplayFor(model => model.EndAdress)</p></div>
     <div class="grid-cell u-30"><p>时间</p></div>
-    <div class="grid-cell u-70"><p>@Html.DisplayFor(model => model.Departure_Date.Date) @Html.DisplayFor(model => model.Departure_Time)</p></div>
+    <div class="grid-cell u-70"><p>@Html.DisplayFor(model => model.Departure_Date) @Html.DisplayFor(model => model.Departure_Time)</p></div>
     <div class="grid-cell u-30"><p>要求</p></div>
     <div class="grid-cell u-70">
         <p>@Html.DisplayFor(model => model.detail)</p>
@@ -32,8 +33,7 @@
             <div class="icon girl-icon">
             </div>
         }
-        else
-        {
+        else {
             <div class="icon boy-icon">
             </div>
         }
@@ -50,12 +50,29 @@
             </div>
         }
     </div>
-    @if ((bool)ViewData["hasFollow"])
+    @*@if ((bool)ViewData["hasFollow"])
+        {
+            <button class="button-click" id="guanzhu" data-listId="@Model.ListID">已关注</button>
+        }
+        else
+        {
+            <button id="guanzhu" data-listId="@Model.ListID">关注</button>
+        }*@
+
+    @if (type == -1 || type == 3)
+    {
+        <button id="guanzhu" data-listId="@Model.ListID">关注</button>
+    }
+    else if (type == 2)
     {
         <button class="button-click" id="guanzhu" data-listId="@Model.ListID">已关注</button>
     }
-    else
+    else if (type == 1)
     {
-        <button id="guanzhu" data-listId="@Model.ListID">关注</button>
+        <button class="button-click">已发布</button>
+    }
+    else if (type == 0)
+    {
+        <button>发布</button>
     }
 </div>

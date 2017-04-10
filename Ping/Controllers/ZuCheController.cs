@@ -15,12 +15,6 @@ namespace Ping.Controllers
     {
         private MapService mapService = new MapService();
 
-        // GET: ZuChe
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         #region 搜索
         // Get:Search
         public ActionResult Search()
@@ -28,12 +22,12 @@ namespace Ping.Controllers
             return View();
         }
 
-
         // Get:Info
         public ActionResult Info()
         {
             return Redirect("~/ZuChe/Search");
         }
+
         // Post:Info
         [HttpPost]
         public ActionResult Info(SearchModels searchModel)
@@ -56,21 +50,23 @@ namespace Ping.Controllers
         [Route("Detail/{id:int}")]
         public ActionResult Detail(int id)
         {
-            if (id == 0) return Redirect("~/ZuChe/Search");
-            List list = mapService.Search(id);
-            if (list != null)
+            if (id > 0)
             {
-                ViewData["RelesseUserID"] = mapService.SearchReleaseIdByListId(list.ListID);
-                ViewData["hasFollow"] = false;
-                if (Session["userId"] != null)
+                List list = mapService.Search(id);
+                if (list != null)
                 {
-                    int userId = int.Parse(Session["userId"].ToString());
-                    User_List ul = mapService.SearchUserListByListId(userId, id);
-                    if (ul != null && ul.Type == 2) ViewData["hasFollow"] = true;
+                    ViewData["RelesseUserID"] = mapService.SearchReleaseIdByListId(list.ListID);
+                    ViewData["userListType"] = -1;
+                    if (Session["userId"] != null)
+                    {
+                        int userId = int.Parse(Session["userId"].ToString());
+                        User_List ul = mapService.SearchUserListByListId(userId, id);
+                        if (ul != null) ViewData["userListType"] = (int)ul.Type;
+                    }
+                    return View(list);
                 }
-                return View(list);
             }
-            return View();
+            return Redirect("~/ZuChe/Search");
         }
 
         //Ajax：搜索临近起点 
@@ -91,7 +87,9 @@ namespace Ping.Controllers
             string s = string.Join("|", SRMs.Select(o => o.EndAdress).ToArray());
             return s;
         }
+        #endregion
 
+        #region 关注
         //Ajax:关注
         [HttpPost]
         [Route("Follow/{listId:int}")]

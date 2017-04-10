@@ -17,7 +17,7 @@ namespace DataSource
         public int UserID { get; set; }
         public int ListID { get; set; }
         public System.DateTime Time { get; set; }
-        // 1:发布 0：删除 2：收藏 3：取消收藏
+        // 0：取消发布 1:发布  2：收藏 3：取消收藏
         public byte Type { get; set; }
         public byte Status { get; set; }
 
